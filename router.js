@@ -9,4 +9,6 @@ router.get('/messages', messagesCtrl.getLatest);
 
 router.post('/messages', messagesCtrl.post);
 
+router.post('/users', messagesCtrl.createUser);
+
 module.exports = router;

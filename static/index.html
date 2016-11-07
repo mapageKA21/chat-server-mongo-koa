@@ -7,6 +7,7 @@
     <!-- <link rel='stylesheet' type='text/css' href='main.css'> -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="rest.js"></script>
+    <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
     <style>
 
       body {
@@ -37,9 +38,23 @@
 
     <div class="container">
       <div id="messages"></div>
-      <input type="text"/>
-      <button>Send</button>
+      <input id="writemessage" type="text"/>
+      <button id ="send">Send</button>
     </div><!-- .container -->
+
+  <div class="wrap">
+    <div class="avatar">
+      <!-- <img src="http://cdn.ialireza.me/avatar.png"> -->
+    </div>
+    <input id="username" type="text" placeholder="username" required>
+    <div class="bar">
+      <i></i>
+    </div>
+    <input id="password" type="password" placeholder="password" required>
+    <a href="" class="forgot_link">forgot ?</a>
+    <button id = "signin">Sign in</button>
+    <button id = "signup">Sign up</button>
+  </div>
 
   </body>
 

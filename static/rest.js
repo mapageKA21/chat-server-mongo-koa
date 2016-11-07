@@ -6,6 +6,11 @@ function postMsg (text) {
   });
 }
 
+// add a new user to db
+function signUp (name, password) {
+  $.post('/users', {name: name, password: password});
+}
+
 //  function receives array to add messages to index.html
 function appendMsgs (msgsArr) {
   if (msgsArr.length) {
@@ -43,15 +48,19 @@ $(function () {
   getLatestMessages();
 
   //  add a new message
-  $('button').click(function () {
-    let text = $('input').val();
+  $('#send').click(function () {
+    let text = $('#writemessage').val();
     text && postMsg(text);
-    $('input').val('');
+    $('#writemessage').val('');
   });
 
-  // poll server for new messages
-  // setInterval(function () {
-  //   getLatestMessages();
-  //   keepScrolled('#messages')
-  // }, 5000);
+  //user sign up
+  $('#signup').click(function () {
+    let name = $('#username').val();
+    let pass = $('#password').val();
+    signUp(name, pass);
+    $('#username').val('');
+    $('#password').val('');
+  });
+
 });

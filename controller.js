@@ -1,6 +1,8 @@
 'use strict';
 
 const Message = require('./models').models.Message;
+const User = require('./models').models.User;
+
 
 exports.getLatest = function* (next) {
   this.type = 'json';
@@ -18,6 +20,20 @@ exports.post = function* (next) {
   var message = new Message(data);
   try {
     yield message.save();
+    this.body = data;
+  } catch (err) {
+    this.status = 500;
+    this.body = err;
+  }
+};
+
+exports.createUser = function* (next) {
+  console.log(next);
+  let data = { name: this.request.body.name, password: this.request.body.password };
+  var user = new User(data);
+  console.log(data);
+  try {
+    yield user.save();
     this.body = data;
   } catch (err) {
     this.status = 500;
