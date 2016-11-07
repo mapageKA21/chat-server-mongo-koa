@@ -3,13 +3,14 @@
 const http = require('http');
 const koa = require('koa');
 const bodyParser = require('koa-bodyparser');
-const session = require('koa-session');
-const simple_auth = require('koa-simple-auth');
+// let bcrypt = require('bcrypt');
 
 const config = require('./config.json');
 const router = require('./router.js');
 const db = require('./models');
 const app = koa();
+// const saltRounds = 10;
+// const myPlaintextPassword = 's0/\/\P4$$w0rD';
 
 app.use(bodyParser());
 app.use(router.routes());

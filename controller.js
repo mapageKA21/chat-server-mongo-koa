@@ -1,4 +1,6 @@
 'use strict';
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const Message = require('./models').models.Message;
 const User = require('./models').models.User;
@@ -28,10 +30,10 @@ exports.post = function* (next) {
 };
 
 exports.createUser = function* (next) {
-  console.log(next);
-  let data = { name: this.request.body.name, password: this.request.body.password };
-  var user = new User(data);
-  console.log(data);
+  let hash = bcrypt.hashSync(this.request.body.password, saltRounds);
+  let token = bcrypt.hashSync(hash, saltRounds);
+  let data = { name: this.request.body.name, password: hash, token: token };
+  let user = new User(data);
   try {
     yield user.save();
     this.body = data;
